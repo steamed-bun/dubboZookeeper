@@ -3,8 +3,8 @@
 <mapper namespace="com.wx.mapper.UserMapper" >
 
     <resultMap id="BaseResultMap" type="com.wx.entity.User">
-        <result column="user_id" property="userId"/>
-        <result column="user_name" property="UserName"/>
+        <result column="id" property="userId"/>
+        <result column="name" property="userName"/>
     </resultMap>
 
     <select id="queryById" resultMap="BaseResultMap" parameterType="Object">
