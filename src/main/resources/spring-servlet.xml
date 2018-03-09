@@ -6,21 +6,25 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <import resource="spring-mybatis.xml"/>
-
     <!--MVC启用注解驱动，自动注册bean开启-->
     <!--spring MVC返回json数据格式转换器-->
     <mvc:annotation-driven />
+    <!-- 静态资源处理 -->
+    <mvc:default-servlet-handler/>
     <!--扫描指定包下的类，并注册被@Component，@Controller，@Service，@Repository等注解标记的组件-->
-    <context:component-scan base-package="com.wx">
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-        <context:exclude-filter type="annotation"
-                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
-    </context:component-scan>
+    <context:component-scan base-package="com.wx"/>
     <!-- 在容器中声明注解 -->
     <context:annotation-config/>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=".html"/>
+    </bean>
+    <bean name="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="10"/>
+    </bean>
 
-
+    <import resource="spring-mybatis.xml"/>
 
 </beans>
 

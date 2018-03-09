@@ -11,6 +11,7 @@
 
     <properties>
         <org.springframework.version>4.3.12.RELEASE</org.springframework.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -67,5 +68,13 @@
     </dependencies>
     <build>
         <finalName>dubboZookeeper</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 </project>

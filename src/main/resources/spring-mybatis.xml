@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
     <!-- 注册数据库的连接信息 -->
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="corePlaceHolder">
@@ -64,18 +63,20 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="mapperLocations">
             <list>
-                <value>classpath:com/wx</value>
+                <!-- TODO: 注意路径 -->
+                <value>classpath:com/wx/mapper/*Mapper.xml</value>
             </list>
         </property>
         <property name="dataSource" ref="dataSource"/>
-        <!-- TODO: 需要修改路径 -->
+        <!-- TODO: 注意路径 -->
         <property name="configLocation" value="classpath:MyBatisConfig.xml"/>
     </bean>
 
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <bean id="mapperScannerConfig"  class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 多个包 用分号隔开  -->
-        <!-- TODO: 需要修改路径 -->
-        <property name="basePackage" value="com.wx.*"/>
+        <!-- TODO: 注意路径 -->
+        <property name="basePackage" value="com.wx.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
     <!-- 配置事务管理器 -->
@@ -85,10 +86,6 @@
     </bean>
     <!-- 注解方式配置事物 -->
     <tx:annotation-driven/>
-    <aop:config proxy-target-class="true">
-        <!-- TODO: 需要注意路径 -->
-        <aop:advisor pointcut="execution(* *com.wx.service.*.*(..))" advice-ref="txAdvice"/>
-    </aop:config>
     <tx:advice id="txAdvice">
         <tx:attributes>
             <tx:method name="get*" read-only="true"/>
