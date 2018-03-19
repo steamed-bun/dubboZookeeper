@@ -87,6 +87,7 @@
             <AppenderRef ref="DEBUGFile" />
             <AppenderRef ref="ERRORFile" />
         </Logger>
+        <!-- 打印 mybatis sql -->
         <Logger name="com.wx.mapper" level="trace" additivity = "false">
             <AppenderRef ref="InfoFile" />
             <AppenderRef ref="DEBUGFile" />

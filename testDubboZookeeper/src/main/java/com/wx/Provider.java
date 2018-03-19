@@ -8,7 +8,6 @@ public class Provider {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring-servlet.xml","classpath:remote-provider.xml");
         context.start();
         System.in.read();	//	按任意键退出
-//        com.alibaba.dubbo.container.Main.main(args);
     }
 
 }

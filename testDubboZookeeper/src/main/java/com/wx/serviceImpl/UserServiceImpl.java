@@ -7,6 +7,7 @@ import com.wx.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Service(version="1.0.0")
+@org.springframework.stereotype.Service
 public class UserServiceImpl implements UserService{
 
     private final UserMapper userMapper;

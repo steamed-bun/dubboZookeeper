@@ -13,10 +13,6 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:spring-servlet.xml</param-value>
   </context-param>
-
-  <listener>
-    <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
-  </listener>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
