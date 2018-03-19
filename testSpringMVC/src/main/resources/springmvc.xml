@@ -45,5 +45,5 @@
                 <!-- 多个拦截器,顺序执行 -->
                 <bean class="com.coocaa.interceptor.Intercept "/>
         </mvc:interceptors>
-
+        <import resource="remote-consumer.xml"/>
 </beans>

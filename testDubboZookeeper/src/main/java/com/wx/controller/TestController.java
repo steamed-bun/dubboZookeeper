@@ -1,7 +1,7 @@
 package com.wx.controller;
 
 import com.wx.entity.User;
-import com.wx.service.UserService;
+import com.wx.serviceImpl.UserServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/testController")
 public class TestController {
 
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
     private Logger logger = LogManager.getLogger("myLog");
 
     @Autowired
-    public TestController(UserService userService) {
-        this.userService = userService;
+    public TestController(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
 
     @RequestMapping(value = "/test")
     @ResponseBody
     public User test(Integer userId){
         System.out.println("test...");
-        User user = userService.queryById(userId);
+        User user = userServiceImpl.queryById(userId);
         logger.info("test...");
         return user;
     }

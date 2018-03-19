@@ -1,17 +1,18 @@
-package com.wx.service;
+package com.wx.serviceImpl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.wx.entity.User;
 import com.wx.mapper.UserMapper;
+import com.wx.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
-public class UserService {
+@Service(version="1.0.0")
+public class UserServiceImpl implements UserService{
 
     private final UserMapper userMapper;
 
     @Autowired(required = false)
-    public UserService(UserMapper userMapper) {
+    public UserServiceImpl(UserMapper userMapper) {
         this.userMapper = userMapper;
     }
 
